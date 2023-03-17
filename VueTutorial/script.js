@@ -3,20 +3,27 @@ const app = Vue.createApp({
         return {
             url: 'https://www.google.com',
             showBooks: true,
-            // title: 'The Final Empire',
-            // author: 'Brandon Sanderson',
             books: [
-                { title: 'name of the wind', author: 'patrick rothfuss', img: '1.jpg', isFav: true},
-                { title: 'the way of kings', author: 'brandon sanderson', img: '2.jpg', isFav: fase},
-                { title: 'name of the wind', author: 'brandon sanderson', img: '3.jpg', isFav: true},
+                { title: 'name of the wind', author: 'patrick rothfuss', img: 'assets/1.png', isFav: true },
+                { title: 'name of the wind', author: 'patrick rothfuss', img: 'assets/1.png', isFav: false },
+                { title: 'name of the wind', author: 'patrick rothfuss', img: 'assets/1.png', isFav: true }
             ]
         }
     },
     methods: {
-        toggleShowBooks(){
+        toggleShowBooks() {
             this.showBooks = !this.showBooks
+        },
+        toggleFav(book){
+            book.isFav = !book.isFav 
+        }
+    },
+    computed: {
+        filteredBooks() {
+            return this.books.filter((book) => book.isFav)
         }
     }
 })
 
 app.mount('#app')
+
